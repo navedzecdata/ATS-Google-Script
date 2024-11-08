@@ -90,6 +90,9 @@ function generateInvoicesForAllEmployees() {
         invoiceTemplate.getRange('C11').setValue(description); // Set description of service
         invoiceTemplate.getRange('B17').setValue(amountInWords); // Set amount in words
   
+        // Ensure all changes are applied before PDF generation
+        SpreadsheetApp.flush();
+  
         // Create a PDF of the invoice template
         const pdfBlob = createPdfFromSheet(invoiceTemplate);
   
